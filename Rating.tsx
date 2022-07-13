@@ -16,8 +16,10 @@ export interface IRatingProps {
     hoverLabel?: boolean;
     /**set custom icon size by sending prop in. Example: "75px" */
     customSize?: string;
-    /**set label title by sending in prop. Example: "TESTING LABEL"*/
-    labelTitle?: string;
+    /**set true or false to activate custom label on hover*/
+    customLabel?: boolean;
+    /**set your own custom hover label text*/
+    customHoverLabel?: any;
     /**send addon-action from storybook as a prop */
     onChange?: () => any;
 }
@@ -33,14 +35,17 @@ export const Rating: FC<patRatingProps> = (props: any) => {
         customRatingValue,
         hoverLabel,
         customSize,
-        labelTitle,
         onChange,
+        customHoverLabel,
+        customLabel,
     } = props;
 
     const [rating, setRating] = useState<number>(customRatingValue);
     const [hoverRating, setHoverRating] = useState<number>(0);
     const [disableCss, setDisableCss] = useState<string>('');
     const [ratingLabel, setRatingLabel] = useState<string>('');
+
+    const [customRatingLabel, setCustomRatingLabel] = useState('');
 
     const starLabel: any = {
         1: 'Useless',
@@ -49,6 +54,8 @@ export const Rating: FC<patRatingProps> = (props: any) => {
         4: 'Good',
         5: 'Excellent',
     };
+
+    const customStarLabel: any = customHoverLabel;
 
     //add color on mouse enter
     const highlite = (index: number) => {
@@ -73,29 +80,42 @@ export const Rating: FC<patRatingProps> = (props: any) => {
         }
     });
 
-    //loop through starlabel object
+    //loop through starlabel object for label value
     useEffect(() => {
-        for (let i = 0; i < stars().length; i++) {
-            if (hoverRating >= stars()[i]) {
-                setRatingLabel(starLabel[hoverRating]);
+        if (hoverLabel) {
+            for (let i = 0; i < stars().length; i++) {
+                if (hoverRating >= stars()[i]) {
+                    setRatingLabel(starLabel[hoverRating]);
+                }
+            }
+        } else if (customLabel) {
+            for (let i = 0; i < stars().length; i++) {
+                if (hoverRating >= stars()[i]) {
+                    setCustomRatingLabel(customStarLabel[hoverRating]);
+                }
             }
         }
     });
 
     //remove hover label on mouse leave and save current index label
     const removeHoverLabel = () => {
-        if (rating) {
+        if (hoverLabel) {
             for (let i = 0; i < stars().length; i++) {
                 if (hoverRating >= stars()[i]) {
                     setRatingLabel(starLabel[rating]);
                 }
             }
-        } else {
-            setRatingLabel('');
+        }
+        if (customLabel) {
+            for (let i = 0; i < stars().length; i++) {
+                if (hoverRating >= stars()[i]) {
+                    setCustomRatingLabel(customStarLabel[rating]);
+                }
+            }
         }
     };
 
-    //make stars
+    //make stars array function
     const stars = () => {
         let starArr = [];
         for (let i = 1; i <= count; i++) {
@@ -104,13 +124,18 @@ export const Rating: FC<patRatingProps> = (props: any) => {
         return starArr;
     };
 
+    //render stars
     const renderStars = stars().map((index: number) => {
         return (
             <button
                 key={index}
+                name="star-input"
+                id="star-input"
                 className={`${classNames} star-btn ${disableCss}`}
                 onMouseEnter={() => highlite(index)}
-                onMouseLeave={() => {removeHighlite()}}
+                onMouseLeave={() => {
+                    removeHighlite();
+                }}
                 onClick={() => {
                     saveRating(index);
                     onChange(index); //storybook action addon
@@ -129,13 +154,14 @@ export const Rating: FC<patRatingProps> = (props: any) => {
                 />
             </button>
         );
-    })
+    });
 
     return (
         <div>
             {renderStars}
-            <label>{hoverLabel ? ratingLabel : ''}</label>
-            <p>{labelTitle}</p>
+            <label htmlFor="star-input">
+                {hoverLabel ? ratingLabel : customLabel ? customRatingLabel : ''}
+            </label>
         </div>
     );
 };

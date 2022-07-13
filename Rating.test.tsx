@@ -4,9 +4,9 @@ import Rating from './Rating';
 
 describe('Rating', () => {
     it('should match snapshot', () => {
-        const { asFragment } = render(<Rating/>);
+        const { asFragment } = render(<Rating />);
         expect(asFragment()).toMatchSnapshot();
-    })
+    });
 
     it('should be able to preview the rating by hovering on the stars', () => {
         const { getAllByRole } = render(<Rating />);
@@ -17,5 +17,4 @@ describe('Rating', () => {
             expect(starInput[i]).toBeInTheDocument();
         }
     });
-        
-})
+});

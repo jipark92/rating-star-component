@@ -2,7 +2,6 @@ import React from 'react';
 import Rating from './Rating';
 import './_Star.scss';
 import { action } from '@storybook/addon-actions';
-import HalfStar from './HalfStar';
 
 export default {
     title: 'Rating',
@@ -31,7 +30,18 @@ export const LabeledRating = () => {
     return (
         <div>
             <h5>Labeled Rating</h5>
-            <Rating hoverLabel={true} labelTitle="label title test" />
+            <Rating hoverLabel={true} />
+            <h5>Custom Labeled Rating</h5>
+            <Rating
+                customLabel={true}
+                customHoverLabel={{
+                    1: 'Custom HoverLabel 1',
+                    2: 'Custom HoverLabel 2',
+                    3: 'Custom HoverLabel 3',
+                    4: 'Custom HoverLabel 4',
+                    5: 'Custom HoverLabel 5',
+                }}
+            />
         </div>
     );
 };
@@ -69,9 +79,6 @@ export const ControlValueRating = () => {
     );
 };
 
-export const HalfStarRatingNOTDONE = () =>{
-    return(
-        <div>
-        </div>
-    )
-}
+export const HalfStarRatingNOTDONE = () => {
+    return <div></div>;
+};
