@@ -1,19 +1,19 @@
 import React, { useState, useMemo, useEffect } from 'react';
 
 export default function StarIcon(props: any) {
-    const { starSize, hoverRating, rating, index, customSize, starCounts } =
-        props;
+    const { starSize, hoverRating, rating, index, customSize } = props;
 
-    // const [colorHalf, setColorHalf] = useState("white")
-    // const [colorFull, setColorFull] = useState("white")
-
+    //hovering or clicked
     const highliteColor = useMemo(() => {
         if (hoverRating >= index || rating >= index) {
-            return 'yellow'; //hovering or clicked
+            return 'yellow';
         } else {
             return 'none';
         }
     }, [rating, hoverRating, index]);
+
+    // const [colorHalf, setColorHalf] = useState("white")
+    // const [colorFull, setColorFull] = useState("white")
 
     // handle half and full star color change
     // const handleHighliteColorChange = (e:any) =>{

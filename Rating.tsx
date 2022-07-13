@@ -88,7 +88,8 @@ export const Rating: FC<patRatingProps> = (props: any) => {
                     setRatingLabel(starLabel[hoverRating]);
                 }
             }
-        } else if (customLabel) {
+        }
+        if (customLabel) {
             for (let i = 0; i < stars().length; i++) {
                 if (hoverRating >= stars()[i]) {
                     setCustomRatingLabel(customStarLabel[hoverRating]);
@@ -168,7 +169,6 @@ export const Rating: FC<patRatingProps> = (props: any) => {
 
 Rating.defaultProps = {
     starSize: 'sm',
-    disableHandler: false,
     count: 5,
 };
 
