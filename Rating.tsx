@@ -44,9 +44,9 @@ export const Rating: FC<patRatingProps> = (props: any) => {
     const [hoverRating, setHoverRating] = useState<number>(0);
     const [disableCss, setDisableCss] = useState<string>('');
     const [ratingLabel, setRatingLabel] = useState<string>('');
-
     const [customRatingLabel, setCustomRatingLabel] = useState('');
 
+    //default hover label
     const starLabel: any = {
         1: 'Useless',
         2: 'Poor',
@@ -55,6 +55,7 @@ export const Rating: FC<patRatingProps> = (props: any) => {
         5: 'Excellent',
     };
 
+    //custom hover labels
     const customStarLabel: any = customHoverLabel;
 
     //add color on mouse enter
@@ -80,7 +81,7 @@ export const Rating: FC<patRatingProps> = (props: any) => {
         }
     });
 
-    //loop through starlabel object for label value
+    //loop through starlabel or customStarLabel object to grab label value
     useEffect(() => {
         if (hoverLabel) {
             for (let i = 0; i < stars().length; i++) {
@@ -167,8 +168,8 @@ export const Rating: FC<patRatingProps> = (props: any) => {
     );
 };
 
+//default setting
 Rating.defaultProps = {
-    starSize: 'sm',
     count: 5,
 };
 

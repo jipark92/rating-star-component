@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo } from 'react';
 
 export default function StarIcon(props: any) {
     const { starSize, hoverRating, rating, index, customSize } = props;
