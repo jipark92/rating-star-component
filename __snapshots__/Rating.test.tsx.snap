@@ -5,6 +5,7 @@ exports[`Rating should match snapshot 1`] = `
   <div>
     <button
       class="undefined star-btn "
+      role="button"
       value="1"
     >
       <svg
@@ -21,6 +22,7 @@ exports[`Rating should match snapshot 1`] = `
     </button>
     <button
       class="undefined star-btn "
+      role="button"
       value="2"
     >
       <svg
@@ -37,6 +39,7 @@ exports[`Rating should match snapshot 1`] = `
     </button>
     <button
       class="undefined star-btn "
+      role="button"
       value="3"
     >
       <svg
@@ -53,6 +56,7 @@ exports[`Rating should match snapshot 1`] = `
     </button>
     <button
       class="undefined star-btn "
+      role="button"
       value="4"
     >
       <svg
@@ -69,6 +73,7 @@ exports[`Rating should match snapshot 1`] = `
     </button>
     <button
       class="undefined star-btn "
+      role="button"
       value="5"
     >
       <svg
