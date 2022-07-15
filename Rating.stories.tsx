@@ -80,10 +80,10 @@ export const ControlValueRating = () => {
     );
 };
 
-export const HalfStarRatingNOTDONE = () => {
-    return <div>
-        <HalfStarRating
-        count={10}
-        />
-    </div>;
+export const Half_StarRating = () => {
+    return (
+        <div>
+            <HalfStarRating count={5} disabler={false} handleLabel={true} />
+        </div>
+    );
 };
